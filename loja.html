@@ -44,6 +44,13 @@
                     </a>
                 </li>
             </ul>
+            
+            <!-- Hamburger Menu -->
+            <button class="nav-toggle" id="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
     </nav>
 
@@ -194,11 +201,27 @@
 
     <!-- Script para interatividade -->
     <script>
+        // Hamburguer Menu Toggle
+        const navToggle = document.getElementById('nav-toggle');
+        const navMenu = document.querySelector('.nav-menu');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        navToggle.addEventListener('click', function() {
+            navToggle.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Fechar menu ao clicar em um link
+        navLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                navToggle.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+
         // Destaca o link ativo baseado na página atual
         document.addEventListener('DOMContentLoaded', function() {
             const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-            const navLinks = document.querySelectorAll('.nav-link');
-            
             navLinks.forEach(link => {
                 const href = link.getAttribute('href');
                 if (href === currentPage || (currentPage === '' && href === 'index.html')) {
