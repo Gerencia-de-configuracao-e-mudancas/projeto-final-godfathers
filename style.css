@@ -524,6 +524,162 @@ nav {
   }
 }
 
+/* ========== LOJA - GRID DE PRODUTOS ========== */
+.loja-grid {
+  display: grid;
+  gap: var(--spacing-lg);
+  margin-top: var(--spacing-2xl);
+  grid-template-columns: repeat(3, 1fr);
+}
+
+@media (max-width: 1024px) {
+  .loja-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 767px) {
+  .loja-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Cards de Produtos */
+.produto-card {
+  background-color: var(--bg-secondary);
+  border-radius: var(--border-radius-lg);
+  border: 2px solid var(--bg-tertiary);
+  overflow: hidden;
+  transition: all var(--transition-smooth);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.produto-card:hover {
+  border-color: var(--accent-neon);
+  box-shadow: var(--shadow-glow);
+  transform: translateY(-8px);
+}
+
+/* Imagem do Produto */
+.produto-imagem {
+  width: 100%;
+  height: 200px;
+  background: linear-gradient(135deg, var(--bg-tertiary) 0%, var(--bg-primary) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.produto-imagem img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-smooth);
+}
+
+.produto-card:hover .produto-imagem img {
+  transform: scale(1.1);
+}
+
+/* Conteúdo do Card */
+.produto-conteudo {
+  padding: var(--spacing-lg);
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: var(--spacing-md);
+}
+
+.produto-titulo {
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  color: var(--accent-light);
+  margin: 0;
+}
+
+.produto-descricao {
+  font-size: var(--font-size-sm);
+  color: #888;
+  margin: 0;
+  flex: 1;
+}
+
+/* Preço */
+.produto-preco {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  color: var(--accent-gold);
+  background-color: var(--bg-tertiary);
+  padding: var(--spacing-md);
+  border-radius: var(--border-radius);
+  text-align: center;
+  justify-content: center;
+}
+
+/* Botão Comprar */
+.btn-comprar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-md) var(--spacing-lg);
+  background-color: var(--accent-neon);
+  color: var(--bg-primary);
+  border: none;
+  border-radius: var(--border-radius);
+  font-family: var(--font-primary);
+  font-size: var(--font-size-base);
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--transition-smooth);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: var(--shadow-lg);
+  width: 100%;
+}
+
+.btn-comprar:hover {
+  background-color: var(--accent-gold);
+  transform: scale(1.05);
+  box-shadow: var(--shadow-glow);
+}
+
+.btn-comprar:active {
+  transform: scale(0.98);
+}
+
+/* Estado Indisponível */
+.btn-comprar.indisponivel {
+  background-color: #555;
+  color: #888;
+  cursor: not-allowed;
+  opacity: 0.6;
+  box-shadow: none;
+}
+
+.btn-comprar.indisponivel:hover {
+  background-color: #555;
+  transform: none;
+  box-shadow: none;
+}
+
+.btn-comprar.indisponivel:active {
+  transform: none;
+}
+
+.produto-card.indisponivel .btn-comprar {
+  background-color: #555;
+  color: #888;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
 /* ========== SCROLLBAR CUSTOMIZADO ========== */
 ::-webkit-scrollbar {
   width: 10px;
