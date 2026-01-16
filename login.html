@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Godfathers</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+    <div class="container">
+        <div class="login-box">
+            <h1>Login</h1>
+            
+            <!-- Mensagens -->
+            <div id="message" class="message"></div>
+            
+            <!-- Abas -->
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="login" onclick="switchTab('login')">Entrar</button>
+                <button class="tab-btn" data-tab="register" onclick="switchTab('register')">Criar Conta</button>
+            </div>
+            
+            <!-- Formulário de Login -->
+            <div id="login" class="tab-content active">
+                <form id="login-form">
+                    <div class="form-group">
+                        <label for="login-username">Usuário</label>
+                        <input type="text" id="login-username" name="username" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="login-password">Senha</label>
+                        <input type="password" id="login-password" name="password" required>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">Entrar</button>
+                </form>
+                
+                <div class="divider">OU</div>
+                
+                <div class="user-list">
+                    <h3>Escolher usuário existente:</h3>
+                    <div id="users-container">
+                        <!-- Usuários serão inseridos aqui via JS -->
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Formulário de Registro -->
+            <div id="register" class="tab-content">
+                <form id="register-form">
+                    <div class="form-group">
+                        <label for="register-username">Nome de Usuário</label>
+                        <input type="text" id="register-username" name="username" required minlength="3">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="register-email">Email</label>
+                        <input type="email" id="register-email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="register-password">Senha</label>
+                        <input type="password" id="register-password" name="password" required minlength="6">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="register-confirm">Confirmar Senha</label>
+                        <input type="password" id="register-confirm" name="confirm" required minlength="6">
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">Criar Conta</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="script/login.js"></script>
+</body>
+</html>

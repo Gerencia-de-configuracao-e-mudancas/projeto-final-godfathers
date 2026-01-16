@@ -1,11 +1,4 @@
-personagem = {
-    nome: "Ruan",
-    xpAtual: 0,
-    xpNecessario: 100,
-    level: 0,
-    money: 0,
-    itens: []
-}
+const personagem = JSON.parse(localStorage.getItem('usuarioLogado'))
 
 
 function uparPersonagem(quantidade) {
