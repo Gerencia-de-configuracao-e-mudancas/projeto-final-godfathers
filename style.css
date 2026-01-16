@@ -310,6 +310,220 @@ nav {
   border-color: var(--accent-neon);
 }
 
+/* ========== HEADER FIXO COM STATS ========== */
+.stats-header {
+  position: fixed;
+  top: 70px;
+  left: 0;
+  right: 0;
+  background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
+  padding: var(--spacing-lg);
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-lg);
+  box-shadow: var(--shadow-md);
+  z-index: 999;
+  flex-wrap: wrap;
+}
+
+.stat-card {
+  background-color: var(--bg-tertiary);
+  border: 1px solid var(--accent-neon);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-md) var(--spacing-lg);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  box-shadow: inset 0 0 15px rgba(187, 134, 252, 0.1);
+  min-width: 180px;
+}
+
+.stat-icon {
+  font-size: var(--font-size-2xl);
+}
+
+.stat-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-label {
+  font-size: var(--font-size-sm);
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.stat-value {
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  color: var(--accent-gold);
+}
+
+@media (max-width: 767px) {
+  .stats-header {
+    top: 70px;
+    gap: var(--spacing-md);
+    padding: var(--spacing-md);
+  }
+  
+  .stat-card {
+    min-width: 140px;
+    padding: var(--spacing-md);
+  }
+  
+  .stat-value {
+    font-size: var(--font-size-base);
+  }
+}
+
+/* ========== LISTA DE TAREFAS ========== */
+.quests-container {
+  margin-top: 160px;
+}
+
+.quests-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+.quest-item {
+  background-color: var(--bg-secondary);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-lg);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-lg);
+  border: 2px solid var(--bg-tertiary);
+  transition: all var(--transition-smooth);
+  cursor: pointer;
+}
+
+.quest-item:hover {
+  border-color: var(--accent-neon);
+  background-color: var(--bg-tertiary);
+}
+
+.quest-item.completed {
+  background: linear-gradient(135deg, rgba(76, 175, 80, 0.1) 0%, rgba(187, 134, 252, 0.1) 100%);
+  border-color: var(--accent-gold);
+  box-shadow: inset 0 0 20px rgba(187, 134, 252, 0.2), var(--shadow-lg);
+}
+
+/* Checkbox Customizado */
+.quest-checkbox-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.quest-checkbox {
+  appearance: none;
+  width: 50px;
+  height: 50px;
+  border: 3px solid var(--accent-neon);
+  border-radius: 50%;
+  cursor: pointer;
+  background-color: var(--bg-primary);
+  transition: all var(--transition-smooth);
+  position: relative;
+}
+
+.quest-checkbox:hover {
+  box-shadow: 0 0 15px rgba(187, 134, 252, 0.5);
+  transform: scale(1.1);
+}
+
+.quest-checkbox:checked {
+  background-color: var(--accent-neon);
+  box-shadow: 0 0 20px rgba(187, 134, 252, 0.8), inset 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.quest-checkbox:checked::after {
+  content: '\2713';
+  position: absolute;
+  color: var(--bg-primary);
+  font-size: 1.5rem;
+  font-weight: 700;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Conteúdo da Tarefa */
+.quest-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.quest-title {
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  color: var(--accent-light);
+  transition: all var(--transition-smooth);
+}
+
+.quest-item.completed .quest-title {
+  text-decoration: line-through;
+  color: #888;
+}
+
+.quest-description {
+  font-size: var(--font-size-sm);
+  color: #888;
+  transition: all var(--transition-smooth);
+}
+
+.quest-item.completed .quest-description {
+  color: #666;
+}
+
+/* XP da Tarefa */
+.quest-xp {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  background-color: var(--bg-tertiary);
+  padding: var(--spacing-md) var(--spacing-lg);
+  border-radius: var(--border-radius);
+  font-weight: 600;
+  color: var(--accent-gold);
+  white-space: nowrap;
+}
+
+/* Responsividade */
+@media (max-width: 767px) {
+  .quests-container {
+    margin-top: 200px;
+  }
+  
+  .quest-item {
+    padding: var(--spacing-md);
+    gap: var(--spacing-md);
+  }
+  
+  .quest-checkbox {
+    width: 40px;
+    height: 40px;
+    border-width: 2px;
+  }
+  
+  .quest-title {
+    font-size: var(--font-size-base);
+  }
+  
+  .quest-xp {
+    font-size: var(--font-size-sm);
+    padding: var(--spacing-sm) var(--spacing-md);
+  }
+}
+
 /* ========== SCROLLBAR CUSTOMIZADO ========== */
 ::-webkit-scrollbar {
   width: 10px;
