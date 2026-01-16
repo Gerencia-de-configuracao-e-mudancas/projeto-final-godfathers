@@ -680,7 +680,194 @@ nav {
   opacity: 0.6;
 }
 
-/* ========== SCROLLBAR CUSTOMIZADO ========== */
+/* ========== PERFIL - AVATAR ========== */
+.perfil-container {
+  margin-top: var(--spacing-2xl);
+}
+
+.avatar-section {
+  display: flex;
+  justify-content: center;
+  margin-bottom: var(--spacing-2xl);
+}
+
+.avatar-wrapper {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  padding: 4px;
+  background: linear-gradient(135deg, var(--accent-neon) 0%, var(--accent-gold) 100%);
+  box-shadow: var(--shadow-lg), 0 0 30px rgba(187, 134, 252, 0.4);
+}
+
+.avatar-image {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: var(--bg-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  overflow: hidden;
+}
+
+.avatar-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.rank-badge {
+  position: absolute;
+  bottom: -5px;
+  right: -5px;
+  background-color: var(--accent-gold);
+  color: var(--bg-primary);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: var(--font-size-lg);
+  box-shadow: var(--shadow-md);
+  border: 3px solid var(--bg-primary);
+}
+
+/* ========== BARRA DE XP ========== */
+.xp-section {
+  background-color: var(--bg-secondary);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-lg);
+  margin-bottom: var(--spacing-2xl);
+  border: 1px solid var(--bg-tertiary);
+  box-shadow: var(--shadow-md);
+}
+
+.xp-label {
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  color: var(--accent-light);
+  margin-bottom: var(--spacing-md);
+}
+
+.xp-bar-container {
+  width: 100%;
+  height: 30px;
+  background-color: var(--bg-tertiary);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+  margin-bottom: var(--spacing-md);
+}
+
+.xp-bar-fill {
+  height: 100%;
+  width: 30%;
+  background: linear-gradient(90deg, var(--accent-neon) 0%, var(--accent-gold) 100%);
+  transition: width var(--transition-smooth);
+  box-shadow: inset 0 0 10px rgba(187, 134, 252, 0.3);
+  position: relative;
+}
+
+.xp-bar-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.xp-text {
+  font-size: var(--font-size-base);
+  font-weight: 700;
+  color: var(--accent-neon);
+  text-align: center;
+}
+
+/* ========== ESTATÍSTICAS - GRID ========== */
+.stats-grid {
+  display: grid;
+  gap: var(--spacing-lg);
+  grid-template-columns: repeat(2, 1fr);
+  margin-top: var(--spacing-2xl);
+}
+
+@media (max-width: 767px) {
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.stat-box {
+  background-color: var(--bg-secondary);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-lg);
+  border: 1px solid var(--bg-tertiary);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-md);
+  text-align: center;
+  transition: all var(--transition-smooth);
+  box-shadow: var(--shadow-md);
+}
+
+.stat-box:hover {
+  border-color: var(--accent-neon);
+  box-shadow: var(--shadow-glow);
+  transform: translateY(-4px);
+}
+
+.stat-icon {
+  font-size: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stat-number {
+  font-size: var(--font-size-2xl);
+  font-weight: 700;
+  color: var(--accent-gold);
+}
+
+.stat-name {
+  font-size: var(--font-size-base);
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+}
+
+/* Nome do Herói */
+.hero-name {
+  text-align: center;
+  margin-bottom: var(--spacing-lg);
+}
+
+.hero-name h2 {
+  font-size: var(--font-size-xl);
+  color: var(--accent-light);
+  margin-bottom: var(--spacing-sm);
+}
+
+.hero-rank {
+  color: var(--accent-gold);
+  font-size: var(--font-size-base);
+  font-weight: 600;
+}
 ::-webkit-scrollbar {
   width: 10px;
 }

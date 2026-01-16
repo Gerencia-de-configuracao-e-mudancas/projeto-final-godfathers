@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LevelUp Life - Meu Herói</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- CSS Global -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- ========== NAVBAR ========== -->
+    <nav>
+        <div class="nav-container">
+            <!-- Logo -->
+            <div class="nav-logo">
+                <span>⚡</span>
+                <span>LevelUp Life</span>
+            </div>
+            
+            <!-- Menu de Navegação -->
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">
+                        <span>🎯</span>
+                        <span>Quests</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="loja.html" class="nav-link">
+                        <span>🛍️</span>
+                        <span>Loja</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="perfil.html" class="nav-link active">
+                        <span>🦸</span>
+                        <span>Herói</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- ========== HEADER COM STATS ========== -->
+    <header class="stats-header">
+        <div class="stat-card">
+            <span class="stat-icon">💰</span>
+            <div class="stat-content">
+                <span class="stat-label">Saldo Atual</span>
+                <span class="stat-value" id="saldo-display">0</span>
+            </div>
+        </div>
+        <div class="stat-card">
+            <span class="stat-icon">⚡</span>
+            <div class="stat-content">
+                <span class="stat-label">Nível</span>
+                <span class="stat-value" id="nivel-display">1</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- ========== CONTEÚDO PRINCIPAL ========== -->
+    <main class="main-content">
+        <div class="container perfil-container">
+            <h1>🦸 Meu Herói</h1>
+            <p>Acompanhe o progresso e evolução do seu personagem</p>
+            
+            <!-- ========== AVATAR ========== -->
+            <div class="avatar-section">
+                <div class="avatar-wrapper">
+                    <div class="avatar-image">
+                        🧙
+                    </div>
+                    <div class="rank-badge" id="rank-badge">1</div>
+                </div>
+            </div>
+
+            <!-- ========== NOME DO HERÓI ========== -->
+            <div class="hero-name">
+                <h2>Mago Aventureiro</h2>
+                <p class="hero-rank">🏆 Aprendiz - Rank I</p>
+            </div>
+
+            <!-- ========== BARRA DE XP ========== -->
+            <div class="xp-section">
+                <p class="xp-label">Progressão</p>
+                <div class="xp-bar-container">
+                    <div class="xp-bar-fill" id="xp-fill" style="width: 30%;"></div>
+                </div>
+                <p class="xp-text" id="xp-text">XP: 150/500</p>
+            </div>
+
+            <!-- ========== ESTATÍSTICAS ========== -->
+            <section>
+                <h3 style="margin-bottom: var(--spacing-lg); color: var(--accent-light);">📊 Suas Estatísticas</h3>
+                <div class="stats-grid">
+                    
+                    <!-- Stat 1: Dias de Ofensiva -->
+                    <div class="stat-box">
+                        <div class="stat-icon">🔥</div>
+                        <div class="stat-number" id="dias-ofensiva">7</div>
+                        <div class="stat-name">Dias de Ofensiva</div>
+                    </div>
+
+                    <!-- Stat 2: Total de Tarefas -->
+                    <div class="stat-box">
+                        <div class="stat-icon">✅</div>
+                        <div class="stat-number" id="total-tarefas">23</div>
+                        <div class="stat-name">Total de Tarefas</div>
+                    </div>
+
+                    <!-- Stat 3: Itens Comprados -->
+                    <div class="stat-box">
+                        <div class="stat-icon">🛍️</div>
+                        <div class="stat-number" id="itens-comprados">5</div>
+                        <div class="stat-name">Itens Comprados</div>
+                    </div>
+
+                    <!-- Stat 4: Coleções Desbloqueadas -->
+                    <div class="stat-box">
+                        <div class="stat-icon">🏅</div>
+                        <div class="stat-number" id="colecoes">3</div>
+                        <div class="stat-name">Coleções Completas</div>
+                    </div>
+
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Script para interatividade -->
+    <script>
+        // Destaca o link ativo baseado na página atual
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            navLinks.forEach(link => {
+                const href = link.getAttribute('href');
+                if (href === currentPage || (currentPage === '' && href === 'index.html')) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+
+            // Efeito de atualização de XP (exemplo)
+            function updateXPBar(currentXP, maxXP) {
+                const percentage = (currentXP / maxXP) * 100;
+                const xpFill = document.getElementById('xp-fill');
+                const xpText = document.getElementById('xp-text');
+                
+                xpFill.style.width = percentage + '%';
+                xpText.textContent = `XP: ${currentXP}/${maxXP}`;
+            }
+
+            // Seu colega programador vai conectar os dados reais aqui
+            // Exemplo: updateXPBar(150, 500);
+        });
+    </script>
+</body>
+</html>
