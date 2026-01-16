@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LevelUp Life - Quests</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- CSS Global -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- ========== NAVBAR ========== -->
+    <nav>
+        <div class="nav-container">
+            <!-- Logo -->
+            <div class="nav-logo">
+                <span>⚡</span>
+                <span>LevelUp Life</span>
+            </div>
+            
+            <!-- Menu de Navegação -->
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link active">
+                        <span>🎯</span>
+                        <span>Quests</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="loja.html" class="nav-link">
+                        <span>🛍️</span>
+                        <span>Loja</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="perfil.html" class="nav-link">
+                        <span>🦸</span>
+                        <span>Herói</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- ========== CONTEÚDO PRINCIPAL ========== -->
+    <main class="main-content">
+        <div class="container">
+            <h1>Bem-vindo ao LevelUp Life</h1>
+            <p>Gamifique sua vida e complete quests incríveis!</p>
+            
+            <!-- Exemplo de Card -->
+            <div class="card">
+                <h2>🚀 Comece sua Jornada</h2>
+                <p>Explore as quests disponíveis e ganhe XP para subir de nível.</p>
+                <button class="btn btn-primary">Ver Quests</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Script para interatividade (opcional) -->
+    <script>
+        // Destaca o link ativo baseado na página atual
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            navLinks.forEach(link => {
+                const href = link.getAttribute('href');
+                if (href === currentPage || (currentPage === '' && href === 'index.html')) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
