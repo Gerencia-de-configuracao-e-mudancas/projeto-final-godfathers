@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LevelUp Life - Quests</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- CSS Global -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- ========== NAVBAR ========== -->
+    <nav>
+        <div class="nav-container">
+            <!-- Logo -->
+            <div class="nav-logo">
+                <span>⚡</span>
+                <span>LevelUp Life</span>
+            </div>
+            
+            <!-- Menu de Navegação -->
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link active">
+                        <span>🎯</span>
+                        <span>Quests</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="loja.html" class="nav-link">
+                        <span>🛍️</span>
+                        <span>Loja</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="perfil.html" class="nav-link">
+                        <span>🦸</span>
+                        <span>Herói</span>
+                    </a>
+                </li>
+            </ul>
+            
+            <!-- Hamburger Menu -->
+            <button class="nav-toggle" id="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ========== HEADER COM STATS ========== -->
+    <header class="stats-header">
+        <div class="stat-card">
+            <span class="stat-icon">💰</span>
+            <div class="stat-content">
+                <span class="stat-label">Saldo Atual</span>
+                <span class="stat-value" id="saldo-display">0</span>
+            </div>
+        </div>
+        <div class="stat-card">
+            <span class="stat-icon">⚡</span>
+            <div class="stat-content">
+                <span class="stat-label">Nível</span>
+                <span class="stat-value" id="nivel-display">1</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- ========== CONTEÚDO PRINCIPAL ========== -->
+    <main class="main-content">
+        <div class="container">
+            <h1>🏃 Minhas Quests</h1>
+            <p>Complete tarefas para ganhar XP e subir de nível!</p>
+            
+            <!-- Lista de Tarefas -->
+            <div class="quests-container">
+                <ul class="quests-list">
+                    <!-- Quest 1 -->
+                    <li class="quest-item" data-quest-id="1">
+                        <div class="quest-checkbox-wrapper">
+                            <input type="checkbox" class="quest-checkbox" id="quest-1">
+                        </div>
+                        <div class="quest-content">
+                            <label for="quest-1" class="quest-title">Beber 2L de água</label>
+                            <p class="quest-description">Mantenha-se hidratado durante o dia</p>
+                        </div>
+                        <div class="quest-xp">
+                            <span>+50 XP</span>
+                        </div>
+                    </li>
+
+                    <!-- Quest 2 -->
+                    <li class="quest-item" data-quest-id="2">
+                        <div class="quest-checkbox-wrapper">
+                            <input type="checkbox" class="quest-checkbox" id="quest-2">
+                        </div>
+                        <div class="quest-content">
+                            <label for="quest-2" class="quest-title">Revisar Git</label>
+                            <p class="quest-description">Faça commit de suas mudanças e push para o repositório</p>
+                        </div>
+                        <div class="quest-xp">
+                            <span>+100 XP</span>
+                        </div>
+                    </li>
+
+                    <!-- Quest 3 -->
+                    <li class="quest-item" data-quest-id="3">
+                        <div class="quest-checkbox-wrapper">
+                            <input type="checkbox" class="quest-checkbox" id="quest-3">
+                        </div>
+                        <div class="quest-content">
+                            <label for="quest-3" class="quest-title">Caminhada de 30 minutos</label>
+                            <p class="quest-description">Saia de casa e aproveite o ar fresco</p>
+                        </div>
+                        <div class="quest-xp">
+                            <span>+75 XP</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </main>
+
+    <!-- Script para interatividade -->
+    <script>
+        // Hamburguer Menu Toggle
+        const navToggle = document.getElementById('nav-toggle');
+        const navMenu = document.querySelector('.nav-menu');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        navToggle.addEventListener('click', function() {
+            navToggle.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Fechar menu ao clicar em um link
+        navLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                navToggle.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // Destaca o link ativo baseado na página atual
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            navLinks.forEach(link => {
+                const href = link.getAttribute('href');
+                if (href === currentPage || (currentPage === '' && href === 'index.html')) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+
+            // Funcionalidade de checkboxes
+            const checkboxes = document.querySelectorAll('.quest-checkbox');
+            checkboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', function() {
+                    const questItem = this.closest('.quest-item');
+                    if (this.checked) {
+                        questItem.classList.add('completed');
+                    } else {
+                        questItem.classList.remove('completed');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
