@@ -113,7 +113,7 @@ a:hover {
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: var(--spacing-xl);
+  padding: var(--spacing-lg);
 }
 
 /* ========== NAVBAR / NAVEGAÇÃO ========== */
@@ -251,7 +251,7 @@ nav {
 /* ========== LAYOUT RESPONSIVO ========== */
 .main-content {
   min-height: calc(100vh - 70px);
-  padding: var(--spacing-2xl) var(--spacing-lg);
+  padding: var(--spacing-lg);
 }
 
 /* ========== BOTÕES ========== */
@@ -310,76 +310,77 @@ nav {
   border-color: var(--accent-neon);
 }
 
-/* ========== HEADER FIXO COM STATS ========== */
+/* ========== HEADER COM STATS ========== */
 .stats-header {
-  position: fixed;
-  top: 70px;
-  left: 0;
-  right: 0;
-  background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
-  padding: var(--spacing-lg);
+  position: relative;
+  background: transparent;
+  padding: var(--spacing-lg) 0;
   display: flex;
   justify-content: center;
-  gap: var(--spacing-lg);
-  box-shadow: var(--shadow-md);
-  z-index: 999;
+  gap: var(--spacing-md);
   flex-wrap: wrap;
+  margin-bottom: var(--spacing-lg);
 }
 
 .stat-card {
   background-color: var(--bg-tertiary);
   border: 1px solid var(--accent-neon);
-  border-radius: var(--border-radius-lg);
-  padding: var(--spacing-md) var(--spacing-lg);
+  border-radius: var(--border-radius);
+  padding: var(--spacing-sm) var(--spacing-md);
   display: flex;
   align-items: center;
-  gap: var(--spacing-md);
-  box-shadow: inset 0 0 15px rgba(187, 134, 252, 0.1);
-  min-width: 180px;
+  gap: var(--spacing-sm);
+  box-shadow: inset 0 0 10px rgba(187, 134, 252, 0.08);
+  min-width: auto;
+  transition: all var(--transition-fast);
+}
+
+.stat-card:hover {
+  box-shadow: inset 0 0 15px rgba(187, 134, 252, 0.15);
 }
 
 .stat-icon {
-  font-size: var(--font-size-2xl);
+  font-size: var(--font-size-lg);
 }
 
 .stat-content {
   display: flex;
   flex-direction: column;
+  gap: 2px;
 }
 
 .stat-label {
-  font-size: var(--font-size-sm);
+  font-size: 0.65rem;
   color: #888;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 0.5px;
 }
 
 .stat-value {
-  font-size: var(--font-size-lg);
+  font-size: var(--font-size-base);
   font-weight: 700;
   color: var(--accent-gold);
 }
 
 @media (max-width: 767px) {
   .stats-header {
-    top: 70px;
-    gap: var(--spacing-md);
-    padding: var(--spacing-md);
+    gap: var(--spacing-sm);
+    padding: var(--spacing-md) 0;
   }
   
   .stat-card {
-    min-width: 140px;
-    padding: var(--spacing-md);
+    padding: var(--spacing-sm);
+    min-width: auto;
   }
   
   .stat-value {
-    font-size: var(--font-size-base);
+    font-size: 0.9rem;
   }
 }
 
 /* ========== LISTA DE TAREFAS ========== */
 .quests-container {
-  margin-top: 160px;
+  margin-top: var(--spacing-lg);
 }
 
 .quests-list {
