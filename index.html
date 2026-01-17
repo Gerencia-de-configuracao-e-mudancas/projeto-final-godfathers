@@ -79,48 +79,44 @@
             <p>Complete tarefas para ganhar XP, dinheiro (100R$/tarefa) e subir de nível!</p>
             
             <!-- Lista de Tarefas -->
-            <div class="quests-container">
-                <ul class="quests-list">
-                    <!-- Quest 1 -->
-                    <li class="quest-item" data-quest-id="1">
-                        <div class="quest-checkbox-wrapper">
-                            <input type="checkbox" class="quest-checkbox" id="quest-1" onclick="uparPersonagem(50)">
-                        </div>
-                        <div class="quest-content">
-                            <label for="quest-1" class="quest-title">Beber 2L de água</label>
-                            <p class="quest-description">Mantenha-se hidratado durante o dia</p>
-                        </div>
-                        <div class="quest-xp">
-                            <span>+50 XP</span>
-                        </div>
-                    </li>
-
-                    <!-- Quest 2 -->
-                    <li class="quest-item" data-quest-id="2">
-                        <div class="quest-checkbox-wrapper">
-                            <input type="checkbox" class="quest-checkbox" id="quest-2" onclick="uparPersonagem(75)">
-                        </div>
-                        <div class="quest-content">
-                            <label for="quest-2" class="quest-title">Revisar Git</label>
-                            <p class="quest-description">Faça commit de suas mudanças e push para o repositório</p>
-                        </div>
-                        <div class="quest-xp">
-                            <span>+75 XP</span>
-                        </div>
-                    </li>
-
-                    <!-- Quest 3 -->
-                    <li class="quest-item" data-quest-id="3">
-                        <div class="quest-checkbox-wrapper">
-                            <input type="checkbox" class="quest-checkbox" id="quest-3" onclick="uparPersonagem(100)">
-                        </div>
-                        <div class="quest-content">
-                            <label for="quest-3" class="quest-title">Caminhada de 30 minutos</label>
-                            <p class="quest-description">Saia de casa e aproveite o ar fresco</p>
-                        </div>
-                        <div class="quest-xp">
-                            <span>+100 XP</span>
-                        </div>
+            <ul class="quests-list">
+                <li class="quest-item" data-quest-id="1">
+                    <div class="quest-checkbox-wrapper">
+                        <input type="checkbox" class="quest-checkbox" id="quest-1" onclick="uparPersonagem(50, this)">
+                    </div>
+                    <div class="quest-content">
+                        <label for="quest-1" class="quest-title">Beber 2L de água</label>
+                        <p class="quest-description">Mantenha-se hidratado durante o dia</p>
+                    </div>
+                    <div class="quest-xp">
+                        <span>+50 XP</span>
+                    </div>
+                </li>
+            
+                <li class="quest-item" data-quest-id="2">
+                    <div class="quest-checkbox-wrapper">
+                        <input type="checkbox" class="quest-checkbox" id="quest-2" onclick="uparPersonagem(75, this)">
+                    </div>
+                    <div class="quest-content">
+                        <label for="quest-2" class="quest-title">Revisar Git</label>
+                        <p class="quest-description">Faça commit de suas mudanças e push para o repositório</p>
+                    </div>
+                    <div class="quest-xp">
+                        <span>+75 XP</span>
+                    </div>
+                </li>
+            
+                <li class="quest-item" data-quest-id="3">
+                    <div class="quest-checkbox-wrapper">
+                        <input type="checkbox" class="quest-checkbox" id="quest-3" onclick="uparPersonagem(100, this)">
+                    </div>
+                    <div class="quest-content">
+                        <label for="quest-3" class="quest-title">Caminhada de 30 minutos</label>
+                        <p class="quest-description">Saia de casa e aproveite o ar fresco</p>
+                    </div>
+                    <div class="quest-xp">
+                        <span>+100 XP</span>
+                    </div>
                     </li>
                 </ul>
             </div>
