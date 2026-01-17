@@ -22,3 +22,20 @@ document.querySelectorAll('.quest-checkbox').forEach(checkbox => {
         }
     })
 })
+
+
+// Sincroniza XP com o localStorage e salva alterações
+const xpSalvo = localStorage.getItem('xp')
+if (xpSalvo !== null) {
+    personagem.xpAtual = Number(xpSalvo)
+}
+
+function salvarXP() {
+    localStorage.setItem('xp', String(personagem.xpAtual))
+    localStorage.setItem('usuarioLogado', JSON.stringify(personagem))
+}
+
+window.addEventListener('beforeunload', salvarXP)
+document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'hidden') salvarXP()
+})
