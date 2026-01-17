@@ -1,31 +1,70 @@
-// 1. Configurações e Chaves
-const STORAGE_XP = 'levelup_xp';
+// 1. Configurações e chaves utilizadas no localStorage
+const STORAGE_USER = 'usuarioLogado';
+const STORAGE_USERS = 'users';
+const STORAGE_XP = 'levelup_xp'; // mantido só para compatibilidade com dados antigos
 const STORAGE_SALDO = 'levelup_saldo';
 const STORAGE_NIVEL = 'levelup_nivel';
 const XP_POR_NIVEL = 500;
 
-// 2. Inicialização de dados (Lê do localStorage ou começa do zero)
-let xpAtual = parseInt(localStorage.getItem(STORAGE_XP)) || 0;
-let saldoAtual = parseInt(localStorage.getItem(STORAGE_SALDO)) || 0;
-let nivelAtual = parseInt(localStorage.getItem(STORAGE_NIVEL)) || 1;
+// 2. Utilidades de leitura/escrita
+function carregarUsuarios() {
+    return JSON.parse(localStorage.getItem(STORAGE_USERS) || '[]');
+}
 
-// 3. Função para salvar dados de forma consistente
+function carregarUsuarioLogado() {
+    return JSON.parse(localStorage.getItem(STORAGE_USER) || 'null');
+}
+
+function salvarUsuarioLogado(usuarioAtualizado) {
+    // Atualiza o usuário logado
+    localStorage.setItem(STORAGE_USER, JSON.stringify(usuarioAtualizado));
+
+    // Sincroniza o mesmo registro na lista de usuários
+    const usuarios = carregarUsuarios();
+    const idx = usuarios.findIndex(u => u.nome?.toLowerCase() === usuarioAtualizado.nome?.toLowerCase());
+    if (idx >= 0) {
+        usuarios[idx] = usuarioAtualizado;
+    } else {
+        usuarios.push(usuarioAtualizado);
+    }
+    localStorage.setItem(STORAGE_USERS, JSON.stringify(usuarios));
+
+    // Mantém as chaves antigas para não quebrar dados já salvos
+    localStorage.setItem(STORAGE_XP, usuarioAtualizado.xpAtual);
+    localStorage.setItem(STORAGE_SALDO, usuarioAtualizado.money);
+    localStorage.setItem(STORAGE_NIVEL, usuarioAtualizado.level);
+}
+
+// 3. Estado inicial puxado SEMPRE do usuarioLogado
+let usuarioLogado = carregarUsuarioLogado() || {
+    nome: 'Convidado',
+    senha: '',
+    xpAtual: 0,
+    xpNecessario: XP_POR_NIVEL,
+    level: 1,
+    money: 0,
+    itens: []
+};
+
+let xpAtual = parseInt(usuarioLogado.xpAtual) || 0;
+let saldoAtual = parseInt(usuarioLogado.money) || 0;
+let nivelAtual = parseInt(usuarioLogado.level) || 1;
+
+// 4. Função para salvar dados de forma consistente no mesmo objeto
 function salvarDados() {
-    localStorage.setItem(STORAGE_XP, xpAtual);
-    localStorage.setItem(STORAGE_SALDO, saldoAtual);
-    localStorage.setItem(STORAGE_NIVEL, nivelAtual);
-    
-    // Opcional: Se você usa o objeto 'usuarioLogado' para outras coisas
-    const personagem = JSON.parse(localStorage.getItem('usuarioLogado')) || {};
-    personagem.xp = xpAtual;
-    personagem.saldo = saldoAtual;
-    personagem.nivel = nivelAtual;
-    localStorage.setItem('usuarioLogado', JSON.stringify(personagem));
+    usuarioLogado = {
+        ...usuarioLogado,
+        xpAtual,
+        money: saldoAtual,
+        level: nivelAtual,
+        xpNecessario: XP_POR_NIVEL
+    };
 
+    salvarUsuarioLogado(usuarioLogado);
     atualizarInterface();
 }
 
-// 4. Função ÚNICA para ganhar XP e Dinheiro
+// 5. Função ÚNICA para ganhar XP e Dinheiro
 function uparPersonagem(quantidadeXP, checkbox) {
     // Se não passar o checkbox (clique antigo), assume que está ganhando
     if (!checkbox || checkbox.checked) {
@@ -45,7 +84,7 @@ function uparPersonagem(quantidadeXP, checkbox) {
     salvarDados();
 }
 
-// 5. Função para atualizar os elementos visuais
+// 6. Função para atualizar os elementos visuais
 function atualizarInterface() {
     const saldoDisplay = document.getElementById('saldo-display');
     const nivelDisplay = document.getElementById('nivel-display');
@@ -65,7 +104,7 @@ function atualizarInterface() {
     }
 }
 
-// 6. Eventos ao carregar a página
+// 7. Eventos ao carregar a página
 document.addEventListener('DOMContentLoaded', () => {
     atualizarInterface();
 
