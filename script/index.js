@@ -28,18 +28,15 @@ function salvarDados() {
 // 4. Função ÚNICA para ganhar XP e Dinheiro
 function uparPersonagem(quantidadeXP, checkbox) {
     // Se não passar o checkbox (clique antigo), assume que está ganhando
-    if (!checkbox || checkbox.checked) {
+    if (checkbox && checkbox.checked) {
         xpAtual += quantidadeXP;
         saldoAtual += 100;
 
-        // Trava o checkbox para não ganhar XP infinito
-        if (checkbox) checkbox.disabled = true;
-    }
-
-    // Lógica de Level Up
-    if (xpAtual >= nivelAtual * XP_POR_NIVEL) {
-        nivelAtual++;
-        alert(`Parabéns! Você subiu para o nível ${nivelAtual}!`);
+        // Lógica de Level Up
+        if (xpAtual >= nivelAtual * XP_POR_NIVEL) {
+            nivelAtual++;
+            alert(`Parabéns! Você subiu para o nível ${nivelAtual}!`);
+        }
     }
 
     salvarDados();
