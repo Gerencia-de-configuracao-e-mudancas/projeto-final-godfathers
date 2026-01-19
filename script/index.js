@@ -54,6 +54,50 @@ function atualizarInterface() {
     
     if (xpFill && xpText) {
         // Calcula o XP relativo ao nível atual para a barra não ficar sempre cheia
+
+        // Disponibiliza uma função global para comprar itens: debita do saldo e/ou XP e armazena o item
+        window.comprarItem = function (itemId, precoSaldo = 0, precoXP = 0, metadata = {}) {
+            precoSaldo = Number(precoSaldo) || 0;
+            precoXP = Number(precoXP) || 0;
+
+            if (saldoAtual < precoSaldo || xpAtual < precoXP) {
+            alert('Saldo ou XP insuficiente.');
+            return false;
+            }
+
+            // Debita custos
+            saldoAtual -= precoSaldo;
+            xpAtual -= precoXP;
+
+            // Armazena/incrementa o item comprado
+            const STORAGE_ITENS = 'levelup_itens';
+            const itens = JSON.parse(localStorage.getItem(STORAGE_ITENS)) || [];
+
+            const idStr = String(itemId);
+            const idx = itens.findIndex(i => i.id === idStr);
+            if (idx >= 0) {
+            itens[idx].qtd = (itens[idx].qtd || 1) + 1;
+            } else {
+            itens.push({
+                id: idStr,
+                qtd: 1,
+                compradoEm: new Date().toISOString(),
+                precoSaldo,
+                precoXP,
+                ...metadata
+            });
+            }
+            localStorage.setItem(STORAGE_ITENS, JSON.stringify(itens));
+
+            // Reflete no objeto usuarioLogado (se usado)
+            const personagem = JSON.parse(localStorage.getItem('usuarioLogado')) || {};
+            personagem.itens = itens;
+            localStorage.setItem('usuarioLogado', JSON.stringify(personagem));
+
+            // Persiste e atualiza UI
+            salvarDados();
+            return true;
+        };
         const xpNoNivelAtual = xpAtual % XP_POR_NIVEL;
         const porcentagem = (xpNoNivelAtual / XP_POR_NIVEL) * 100;
         
