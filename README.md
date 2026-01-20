@@ -1,4 +1,4 @@
-# 🎮 TaskQuest
+# 🎮 LevelUP Life
 
 Sistema de tarefas gamificado onde você ganha XP e moedas ao completar suas atividades.
 
