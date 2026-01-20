@@ -183,6 +183,7 @@ nav {
   gap: var(--spacing-lg);
   list-style: none;
   align-items: center;
+  margin-left: auto; /* empurra o menu para a direita */
 }
 
 .nav-item {
@@ -209,6 +210,24 @@ nav {
   color: var(--accent-gold);
   background-color: var(--bg-tertiary);
   border-bottom: 2px solid var(--accent-neon);
+}
+
+/* Ações à direita da navbar */
+.nav-actions {
+  margin-left: var(--spacing-lg); /* separação entre menu e box de login */
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+/* Box de login na navbar reaproveitando .stat-card */
+.nav-login-card {
+  /* herda .stat-card; ajuste fino opcional */
+  padding: var(--spacing-sm) var(--spacing-md);
+}
+
+.nav-login-card .btn {
+  padding: var(--spacing-sm) var(--spacing-md);
 }
 
 /* Menu Mobile */
@@ -251,6 +270,7 @@ nav {
   }
   
   .nav-menu {
+    margin-left: 0;       /* neutraliza o empurrão no mobile */
     position: absolute;
     top: 70px;
     left: 0;
@@ -261,17 +281,14 @@ nav {
     overflow: hidden;
     transition: max-height var(--transition-smooth);
     box-shadow: var(--shadow-md);
-  }
-  
-  .nav-menu.active {
-    max-height: 400px;
-  }
-  
-  .nav-menu {
     flex-direction: column;
     gap: var(--spacing-md);
     width: 100%;
     padding: 0;
+  }
+  
+  .nav-menu.active {
+    max-height: 400px;
   }
   
   .nav-link {
@@ -290,6 +307,10 @@ nav {
   
   .nav-logo {
     font-size: var(--font-size-lg);
+  }
+
+  .nav-actions {
+    margin-left: auto; /* mantém o login à direita no topo */
   }
 }
 
@@ -337,6 +358,11 @@ nav {
 .btn-secondary:hover {
   background-color: var(--accent-neon);
   transform: translateY(-2px);
+}
+
+/* Box de Login no header (herda visual de .stat-card) */
+.login-stat .btn {
+  padding: var(--spacing-sm) var(--spacing-md);
 }
 
 /* ========== CARDS ========== */
@@ -593,7 +619,7 @@ nav {
 /* Cards de Produtos */
 .produto-card {
   background-color: var(--bg-secondary);
-  border-radius: var(--border-radius-lg);
+  border-radius: var (--border-radius-lg);
   border: 2px solid var(--bg-tertiary);
   overflow: hidden;
   transition: all var(--transition-smooth);
@@ -804,7 +830,7 @@ nav {
   width: 100%;
   height: 30px;
   background-color: var(--bg-tertiary);
-  border-radius: var(--border-radius);
+  border-radius: var (--border-radius);
   overflow: hidden;
   box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
   margin-bottom: var(--spacing-md);

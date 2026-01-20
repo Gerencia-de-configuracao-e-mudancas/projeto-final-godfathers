@@ -113,6 +113,13 @@ function atualizarInterface() {
 document.addEventListener('DOMContentLoaded', () => {
     atualizarInterface();
 
+    const loginButton = document.getElementById('login-button');
+    if (loginButton) {
+        loginButton.addEventListener('click', () => {
+            window.location.href = 'login.html';
+        });
+    }
+
     // Se estiver na página de quests, garante que os cliques funcionem
     document.querySelectorAll('.quest-checkbox').forEach(checkbox => {
         // Se precisar de lógica extra ao carregar (ex: tarefas já feitas)
