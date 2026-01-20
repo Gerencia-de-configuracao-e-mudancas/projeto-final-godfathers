@@ -1,1 +1,43 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/qlRPAWSm)
+# 🎮 TaskQuest
+
+Sistema de tarefas gamificado onde você ganha XP e moedas ao completar suas atividades.
+
+## 📋 O que faz?
+
+- Criar e gerenciar tarefas
+- Ganhar XP ao completar tarefas
+- Acumular moedas como recompensa
+- Sistema de registro e login de usuários
+
+## 🚀 Como usar
+
+1. Clone o repositório
+```bash
+git clone https://github.com/Gerencia-de-configuracao-e-mudancas/projeto-final-godfathers.git
+```
+
+2. Instale as dependências
+```bash
+npm install
+```
+
+3. Configure o arquivo `.env` com suas credenciais
+
+4. Rode o projeto
+```bash
+npm start
+```
+
+5. Acesse `http://localhost:3000`
+
+## 🛠️ Tecnologias
+
+- [Adicione suas tecnologias aqui]
+
+## 👥 Equipe
+
+The Godfathers - Projeto Final de Gerência de Configuração e Mudanças
+
+---
+
+⭐ Feito com ☕ pela equipe The Godfathers
