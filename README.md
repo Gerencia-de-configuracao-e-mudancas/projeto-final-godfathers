@@ -9,35 +9,25 @@ Sistema de tarefas gamificado onde você ganha XP e moedas ao completar suas ati
 - Acumular moedas como recompensa
 - Sistema de registro e login de usuários
 
-## 🚀 Como usar
+## 🚀 Tecnologias Utilizadas
 
-1. Clone o repositório
-```bash
-git clone https://github.com/Gerencia-de-configuracao-e-mudancas/projeto-final-godfathers.git
-```
+Este projeto foi construído utilizando as seguintes tecnologias:
 
-2. Instale as dependências
-```bash
-npm install
-```
-
-3. Configure o arquivo `.env` com suas credenciais
-
-4. Rode o projeto
-```bash
-npm start
-```
-
-5. Acesse `http://localhost:3000`
-
-## 🛠️ Tecnologias
-
-- [Adicione suas tecnologias aqui]
+- **HTML5**: Estruturação do conteúdo da plataforma.
+- **CSS3**: Estilização e design responsivo.
+- **JavaScript**: Lógica de interatividade e manipulação dinâmica dos dados.
+- **GitHub Pages**: Hospedagem e deploy automatizado da aplicação.
 
 ## 👥 Equipe
 
 The Godfathers - Projeto Final de Gerência de Configuração e Mudanças
 
----
+@jotaveHub - João Victor Batista
+@LuizHenriqueOliv - Luiz Henrique Oliveira
+@Ruan-Vituriano - Ruan Vituriano
 
-⭐ Feito com ☕ pela equipe The Godfathers
+
+## 🎓 Contexto Acadêmico
+Este repositório contém o Projeto Final da disciplina de Gerência de Configuração e Mudanças. O foco principal foi a aplicação de boas práticas de versionamento, fluxo de trabalho em equipe via Git e automação de entrega através do GitHub Actions/Pages.
+
+⭐ Desenvolvido pela equipe The Godfathers.
