@@ -11,22 +11,33 @@ let nivelAtual = parseInt(localStorage.getItem(STORAGE_NIVEL)) || 1;
 
 // 3. Função para salvar dados de forma consistente
 function salvarDados() {
-    localStorage.setItem(STORAGE_XP, xpAtual);
-    localStorage.setItem(STORAGE_SALDO, saldoAtual);
-    localStorage.setItem(STORAGE_NIVEL, nivelAtual);
-    
-    // Opcional: Se você usa o objeto 'usuarioLogado' para outras coisas
-    const personagem = JSON.parse(localStorage.getItem('usuarioLogado')) || {};
-    personagem.xp = xpAtual;
-    personagem.saldo = saldoAtual;
-    personagem.nivel = nivelAtual;
-    localStorage.setItem('usuarioLogado', JSON.stringify(personagem));
+    const u = getUsuarioLogado();
+    if (!u) return;
+
+    // Sincroniza campos conhecidos, se existirem no escopo atual
+    if (typeof xpAtual !== 'undefined') u.xpAtual = xpAtual;
+    if (typeof nivelAtual !== 'undefined') u.level = nivelAtual;
+    if (typeof saldoAtual !== 'undefined') u.money = saldoAtual;
+
+    // u.questsCompletas já é atualizada por marcarQuestConcluida(...)
+    setUsuarioLogado(u);
 
     atualizarInterface();
 }
 
 // 4. Função ÚNICA para ganhar XP e Dinheiro
 function uparPersonagem(quantidadeXP, checkbox) {
+    const questItem = checkbox?.closest('.quest-item');
+    const questId = questItem?.dataset.questId || checkbox?.id?.replace('quest-', '');
+
+    // Se já concluída, garante marcado e desabilitado e sai
+    if (getQuestsCompletas().includes(String(questId))) {
+        checkbox.checked = true;
+        checkbox.disabled = true;
+        questItem && questItem.classList.add('completed');
+        return;
+    }
+
     // Se não passar o checkbox (clique antigo), assume que está ganhando
     if (checkbox && checkbox.checked) {
         xpAtual += quantidadeXP;
@@ -39,7 +50,14 @@ function uparPersonagem(quantidadeXP, checkbox) {
         }
     }
 
+    // Marca como concluída e persiste
+    marcarQuestConcluida(String(questId));
     salvarDados();
+
+    // bloqueia refarm visualmente
+    checkbox.checked = true;
+    checkbox.disabled = true;
+    questItem && questItem.classList.add('completed');
 }
 
 // 5. Função para atualizar os elementos visuais
@@ -106,6 +124,38 @@ function atualizarInterface() {
     }
 }
 
+// ===== Persistência do usuário e quests concluídas =====
+function getUsuarioLogado() {
+  try { return JSON.parse(localStorage.getItem('usuarioLogado') || 'null'); }
+  catch { return null; }
+}
+
+function setUsuarioLogado(user) {
+  localStorage.setItem('usuarioLogado', JSON.stringify(user));
+  // também atualiza no array de usuários
+  const users = JSON.parse(localStorage.getItem('users') || '[]');
+  const idx = users.findIndex(u => u.nome === user.nome);
+  if (idx !== -1) {
+    users[idx] = user;
+    localStorage.setItem('users', JSON.stringify(users));
+  }
+}
+
+function getQuestsCompletas() {
+  const u = getUsuarioLogado();
+  return u && Array.isArray(u.questsCompletas) ? u.questsCompletas : [];
+}
+
+function marcarQuestConcluida(questId) {
+  const u = getUsuarioLogado();
+  if (!u) return;
+  if (!Array.isArray(u.questsCompletas)) u.questsCompletas = [];
+  if (!u.questsCompletas.includes(questId)) {
+    u.questsCompletas.push(String(questId));
+    setUsuarioLogado(u);
+  }
+}
+
 // 6. Eventos ao carregar a página
 document.addEventListener('DOMContentLoaded', () => {
     atualizarInterface();
@@ -120,5 +170,18 @@ document.addEventListener('DOMContentLoaded', () => {
     // Se estiver na página de quests, garante que os cliques funcionem
     document.querySelectorAll('.quest-checkbox').forEach(checkbox => {
         // Se precisar de lógica extra ao carregar (ex: tarefas já feitas)
+    });
+
+    const concluidas = getQuestsCompletas();
+    document.querySelectorAll('.quest-item').forEach(item => {
+        const id = String(item.dataset.questId);
+        if (concluidas.includes(id)) {
+            const cb = item.querySelector('.quest-checkbox');
+            if (cb) {
+                cb.checked = true;
+                cb.disabled = true;
+            }
+            item.classList.add('completed');
+        }
     });
 });

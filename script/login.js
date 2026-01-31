@@ -26,7 +26,8 @@ function loadPersonagem(nome, senha){
     xpNecessario: 100,
     level: 0,
     money: 0,
-    itens: []
+    itens: [],
+    questsCompletas: [] // <-- novo campo para persistir quests concluídas
 }
 }
 
@@ -91,7 +92,7 @@ function login(){
     }
 
     localStorage.setItem('usuarioLogado', JSON.stringify(userLogin))
-    window.location.href = '../index.html'
+    window.location.href = 'index.html' 
 }
 
 document.getElementById('login-form').addEventListener('submit', function(e) {
