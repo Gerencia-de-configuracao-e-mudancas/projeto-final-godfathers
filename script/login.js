@@ -1,5 +1,18 @@
 const tabButtons = document.querySelectorAll('.tab-btn')
 
+// Função para validar email com regex rigoroso
+function validarEmail(email) {
+    // Regex: user@domain.extension
+    // ^[^\s@]+ : começa com 1+ caracteres (não espaço ou @)
+    // @ : símbolo @
+    // [^\s@]+ : 1+ caracteres (não espaço ou @)
+    // \. : ponto obrigatório
+    // [^\s@]+ : 1+ caracteres para extensão (não espaço ou @)
+    // $ : fim da string
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regex.test(email);
+}
+
 function loadUsers() {
     return JSON.parse(localStorage.getItem('users') || '[]')
 }
@@ -34,17 +47,24 @@ function loadPersonagem(nome, senha){
 function register() {
     const form = document.getElementById('register-form')
     const username = document.getElementById('register-username').value.trim()
+    const email = document.getElementById('register-email').value.trim()
     const password = document.getElementById('register-password').value
     const confirmPassword = document.getElementById('register-confirm').value
-
-    if(password !== confirmPassword) {
-        alert('As senhas não coincidem!');
-        return;
-    }
 
     if (!username) {
         alert('Informe um nome de usuário.')
         return
+    }
+
+    // Validação rigorosa de email
+    if (!email || !validarEmail(email)) {
+        alert('Por favor, insira um email válido (exemplo: usuario@dominio.com)')
+        return
+    }
+
+    if(password !== confirmPassword) {
+        alert('As senhas não coincidem!');
+        return;
     }
 
     const users = loadUsers()
@@ -56,6 +76,7 @@ function register() {
     }
 
     let personagem = loadPersonagem(username.trim(), password)
+    personagem.email = email
     users.push(personagem)
     localStorage.setItem('users', JSON.stringify(users))
 
