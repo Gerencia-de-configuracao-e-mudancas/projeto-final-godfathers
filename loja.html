@@ -235,12 +235,22 @@
             const botoes = document.querySelectorAll('.btn-comprar');
             botoes.forEach(btn => {
                 btn.addEventListener('click', function() {
-                    const preco = this.getAttribute('data-preco');
+                    const preco = Number(this.getAttribute('data-preco'));
                     const produtoCard = this.closest('.produto-card');
                     const produtoId = produtoCard.getAttribute('data-produto-id');
+                    const nomeProduto = produtoCard.querySelector('.produto-titulo').textContent;
                     
-                    // Seu colega programador vai conectar a lógica aqui
-                    console.log(`Tentativa de compra - Produto ID: ${produtoId}, Preço: ${preco}`);
+                    // Chama a função de compra com metadados do produto
+                    const sucesso = window.comprarItem(produtoId, preco, 0, {
+                        nome: nomeProduto,
+                        preco: preco
+                    });
+                    
+                    if (sucesso) {
+                        alert(`✅ ${nomeProduto} comprado com sucesso!`);
+                        // Atualiza a exibição do saldo
+                        atualizarInterface();
+                    }
                 });
             });
         });
