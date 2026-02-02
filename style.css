@@ -956,3 +956,130 @@ nav {
 ::-webkit-scrollbar-thumb:hover {
   background: var(--accent-gold);
 }
+/* ========== MODAL STYLES ========== */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.modal-content {
+  background: var(--bg-secondary);
+  border-radius: var(--border-radius-lg);
+  border: 2px solid var(--accent-neon);
+  box-shadow: 0 0 30px rgba(187, 134, 252, 0.3);
+  padding: var(--spacing-xl);
+  max-width: 500px;
+  width: 90%;
+  animation: slideUp 0.3s ease-in-out;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-lg);
+  border-bottom: 2px solid var(--accent-neon);
+  padding-bottom: var(--spacing-md);
+}
+
+.modal-header h2 {
+  margin: 0;
+  color: var(--accent-neon);
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: var(--accent-light);
+  cursor: pointer;
+  transition: color var(--transition-smooth);
+}
+
+.modal-close:hover {
+  color: var(--accent-neon);
+}
+
+.form-group {
+  margin-bottom: var(--spacing-lg);
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  color: var(--accent-light);
+  font-weight: 600;
+  margin-bottom: var(--spacing-sm);
+  font-size: var(--font-size-base);
+}
+
+.form-group input {
+  background: var(--bg-tertiary);
+  border: 2px solid var(--accent-neon);
+  color: var(--accent-light);
+  padding: var(--spacing-md);
+  border-radius: var(--border-radius);
+  font-size: var(--font-size-base);
+  font-family: var(--font-primary);
+  transition: all var(--transition-smooth);
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: var(--accent-gold);
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+}
+
+.form-group input::placeholder {
+  color: var(--accent-light);
+  opacity: 0.6;
+}
+
+#form-quest button {
+  font-weight: 600;
+  cursor: pointer;
+}
+
+#form-quest button[type="submit"] {
+  flex: 1;
+}
+
+#form-quest button[type="button"] {
+  background: var(--bg-tertiary);
+  border: 2px solid var(--accent-light);
+  color: var(--accent-light);
+}
+
+#form-quest button[type="button"]:hover {
+  background: var(--accent-light);
+  color: var(--bg-primary);
+}
