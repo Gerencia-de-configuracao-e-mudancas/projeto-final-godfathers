@@ -82,53 +82,48 @@
     <!-- ========== CONTEÚDO PRINCIPAL ========== -->
     <main class="main-content">
         <div class="container">
-            <h1>🏃 Minhas Quests</h1>
-            <p>Complete tarefas para ganhar XP, dinheiro (100R$/tarefa) e subir de nível!</p>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <div>
+                    <h1>🏃 Minhas Quests</h1>
+                    <p>Complete tarefas para ganhar XP, dinheiro (100R$/tarefa) e subir de nível!</p>
+                </div>
+                <button id="btn-adicionar-quest" class="btn btn-primary" style="height: fit-content;">➕ Nova Quest</button>
+            </div>
             
             <!-- Lista de Tarefas -->
-            <ul class="quests-list">
-                <li class="quest-item" data-quest-id="1">
-                    <div class="quest-checkbox-wrapper">
-                        <input type="checkbox" class="quest-checkbox" id="quest-1" onclick="uparPersonagem(50, this)">
-                    </div>
-                    <div class="quest-content">
-                        <label for="quest-1" class="quest-title">Beber 2L de água</label>
-                        <p class="quest-description">Mantenha-se hidratado durante o dia</p>
-                    </div>
-                    <div class="quest-xp">
-                        <span>+50 XP</span>
-                    </div>
-                </li>
-            
-                <li class="quest-item" data-quest-id="2">
-                    <div class="quest-checkbox-wrapper">
-                        <input type="checkbox" class="quest-checkbox" id="quest-2" onclick="uparPersonagem(75, this)">
-                    </div>
-                    <div class="quest-content">
-                        <label for="quest-2" class="quest-title">Revisar Git</label>
-                        <p class="quest-description">Faça commit de suas mudanças e push para o repositório</p>
-                    </div>
-                    <div class="quest-xp">
-                        <span>+75 XP</span>
-                    </div>
-                </li>
-            
-                <li class="quest-item" data-quest-id="3">
-                    <div class="quest-checkbox-wrapper">
-                        <input type="checkbox" class="quest-checkbox" id="quest-3" onclick="uparPersonagem(100, this)">
-                    </div>
-                    <div class="quest-content">
-                        <label for="quest-3" class="quest-title">Caminhada de 30 minutos</label>
-                        <p class="quest-description">Saia de casa e aproveite o ar fresco</p>
-                    </div>
-                    <div class="quest-xp">
-                        <span>+100 XP</span>
-                    </div>
-                    </li>
-                </ul>
+            <ul class="quests-list" id="quests-list">
+            </ul>
             </div>
         </div>
     </main>
+
+    <!-- ========== MODAL ADICIONAR QUEST ========== -->
+    <div id="modal-quest" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>✨ Criar Nova Quest</h2>
+                <button class="modal-close" id="modal-close">&times;</button>
+            </div>
+            <form id="form-quest">
+                <div class="form-group">
+                    <label for="quest-nome">Nome da Tarefa:</label>
+                    <input type="text" id="quest-nome" placeholder="Ex: Estudar JavaScript" required>
+                </div>
+                <div class="form-group">
+                    <label for="quest-xp">XP da Tarefa:</label>
+                    <input type="number" id="quest-xp" min="10" max="500" value="50" required>
+                </div>
+                <div class="form-group">
+                    <label for="quest-descricao">Descrição (opcional):</label>
+                    <input type="text" id="quest-descricao" placeholder="Ex: Complete um módulo do curso">
+                </div>
+                <div style="display: flex; gap: 10px;">
+                    <button type="submit" class="btn btn-primary">Criar Quest</button>
+                    <button type="button" class="btn" id="btn-cancelar">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
 
     <!-- Script para interatividade -->
     <script>
@@ -160,19 +155,6 @@
                 } else {
                     link.classList.remove('active');
                 }
-            });
-
-            // Funcionalidade de checkboxes
-            const checkboxes = document.querySelectorAll('.quest-checkbox');
-            checkboxes.forEach(checkbox => {
-                checkbox.addEventListener('change', function() {
-                    const questItem = this.closest('.quest-item');
-                    if (this.checked) {
-                        questItem.classList.add('completed');
-                    } else {
-                        questItem.classList.remove('completed');
-                    }
-                });
             });
         });
     </script>
